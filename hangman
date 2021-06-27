@@ -1,0 +1,115 @@
+import random
+
+word_list = ["abruptly"
+"absurd",
+"abyss",
+"affix",
+"askew",
+"avenue",
+"awkward",
+"axiom",
+"azure",
+"bagpipes",
+"bandwagon",
+"banjo",
+"bayou",
+"beekeeper",
+"bikini",
+"blitz",
+"blizzard",
+"boggle",
+"bookworm",
+"boxcar",
+"boxful",
+"buckaroo",
+"buffalo",
+"buffoon",
+"buxom",
+"buzzard",
+"buzzing",
+"buzzwords",
+"caliph",
+"cobweb",
+"cockiness",
+"croquet",
+"crypt",
+"curacao",
+"cycle",
+"daiquiri",
+"dirndl",
+"disavow",
+"dizzying",
+"duplex",
+"dwarves",
+"embezzle",
+"equip",
+"espionage",
+"euouae",
+"exodus",
+"faking",
+"fishhook",
+"fixable",
+"fjord",
+"flapjack",
+"flopping",
+"fluffiness",
+"flyby",
+"foxglove",
+"frazzled",
+"frizzled",
+"fuchsia",
+"funny",
+"gabby",
+"galaxy",
+"galvanize",
+"gazebo",
+"giaour",
+"gizmo",
+"glowworm",
+"glyph"]
+
+def hangman():
+    computer_choice_blank = (random.choice(word_list))
+    computer_choice = computer_choice_blank
+    life = 7
+
+    for i in computer_choice:
+        computer_choice_blank = computer_choice_blank.replace(i,'_')
+
+    print("The word is: " + computer_choice_blank)
+
+    computer_choice_listify = list(computer_choice)
+    computer_choice_blank_listify = list(computer_choice_blank)
+
+    update_string = ""
+    while life >= 1:
+        user_input = input("Please guess a character: ")
+        temp_list = []
+        temp_str = ""
+
+        if user_input in computer_choice_listify:
+            for i in range(0,len(computer_choice_listify)):
+                if user_input == computer_choice_listify[i]:
+                    temp_list.append(i)
+            for k in temp_list:
+                computer_choice_blank_listify[k] = computer_choice_listify[k]
+            print(temp_str.join(computer_choice_blank_listify))
+            if computer_choice_blank_listify == computer_choice_listify:
+                print('You won!')
+                break
+            print('You still have ' + str(life) + ' life\n')
+        else:
+            life -= 1
+            print(temp_str.join(computer_choice_blank_listify))
+            if life == 0:
+                print('Game over!')
+                print('The answer is: ' + computer_choice)
+                break
+            else:
+                print('You still have ' + str(life) + ' life\n')
+
+
+
+
+
+hangman()
